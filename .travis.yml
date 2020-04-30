@@ -5,9 +5,6 @@ jobs:
   include:
     - stage: Oracle JDK 8
       jdk: oraclejdk8
-    - stage: Open JDK 8
-      jdk: openjdk8
-      arch: s390x
     - stage: AdoptOpenJDK 11.0.3
       install:
         - curl -L -o install-jdk.sh https://github.com/sormuras/bach/raw/master/install-jdk.sh
