@@ -6,7 +6,7 @@ jobs:
     - stage: Oracle JDK 8
       jdk: oraclejdk8
     - stage: OpenJDK 11
-      jdk: openjdk11-s390x
+      jdk: openjdk11
       arch: s390x
     - stage: AdoptOpenJDK 11.0.3
       install:
