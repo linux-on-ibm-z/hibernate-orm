@@ -30,7 +30,12 @@ before_script:
     fi
       
 script:
-  - ./gradlew check -Plog-test-progress=true
+  - if [ "$HOSTTYPE" == "s390x" ];then
+      ./gradlew --no-daemon check -Plog-test-progress=true;
+    else
+      ./gradlew check -Plog-test-progress=true;
+    fi
+  #- ./gradlew check -Plog-test-progress=true
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
