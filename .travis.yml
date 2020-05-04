@@ -31,7 +31,7 @@ before_script:
       
 script:
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew check -Plog-test-progress=true --no-daemon;
+      ./gradlew check --no-daemon -Plog-test-progress=true;
     else
       ./gradlew check -Plog-test-progress=true;
     fi
