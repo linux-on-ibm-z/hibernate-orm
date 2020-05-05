@@ -23,14 +23,14 @@ jobs:
 before_script:
   - java -version
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew --no-daemon assemble;
+      ./gradlew -Dorg.gradle.jvmargs=-Xmx1536m assemble;
     else
       ./gradlew assemble;
     fi
       
 script:
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew check --no-daemon -Plog-test-progress=true;
+      ./gradlew check -Dorg.gradle.jvmargs=-Xmx1536m -Plog-test-progress=true;
     else
       ./gradlew check -Plog-test-progress=true;
     fi
