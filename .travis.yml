@@ -3,16 +3,16 @@ language: java
 
 jobs:
   include:
-    - stage: Oracle JDK 8
-      jdk: oraclejdk8
+    #- stage: Oracle JDK 8
+    #  jdk: oraclejdk8
     - stage: OpenJDK 11
       jdk: openjdk11
       dist: bionic
       arch: s390x
     - stage: AdoptOpenJDK 11.0.3
-      install:
-        - curl -L -o install-jdk.sh https://github.com/sormuras/bach/raw/master/install-jdk.sh
-        - source ./install-jdk.sh --target ./openjdk11 --url https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.3_7.tar.gz
+     # install:
+    #    - curl -L -o install-jdk.sh https://github.com/sormuras/bach/raw/master/install-jdk.sh
+     #   - source ./install-jdk.sh --target ./openjdk11 --url https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.3_7.tar.gz
     - os: linux
       dist: bionic
       arch: s390x
