@@ -23,9 +23,9 @@ jobs:
 before_script:
   - java -version
   - if [ "$HOSTTYPE" == "s390x" ];then
-      export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8;     
-      export _JAVA_OPTIONS=-Xmx10g;                     
-      export LANG=en_US.UTF-8;
+      # JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8;     
+      #export _JAVA_OPTIONS=-Xmx10g;                     
+      #export LANG=en_US.UTF-8;
       ./gradlew assemble -Dorg.gradle.jvmargs=-Xmx2048m --no-daemon;
     else
       ./gradlew assemble;
@@ -33,7 +33,10 @@ before_script:
       
 script:
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew check -Plog-test-progress=true --no-daemon;
+      ./gradlew check -Plog-test-progress=true --no-daemon -Dtests.haltonfailure=false --continue;
+      sed -i 's/'-XX:MetaspaceSize=512M'/'-XX:MetaspaceSize=1024M'/g' gradle/java-module.gradle;
+      sed -i 's/task.maxHeapSize = '4G'/task.maxHeapSize = '10G'/g' gradle/java-module.gradle;
+      ./gradlew hibernate-core:test check --no-daemon;
     else
       ./gradlew check -Plog-test-progress=true;
     fi
