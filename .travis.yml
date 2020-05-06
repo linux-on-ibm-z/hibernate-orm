@@ -33,10 +33,9 @@ before_script:
       
 script:
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew check -Plog-test-progress=true --no-daemon -Dtests.haltonfailure=false --continue;
       sed -i 's/'-XX:MetaspaceSize=512M'/'-XX:MetaspaceSize=1024M'/g' gradle/java-module.gradle;
       sed -i 's/task.maxHeapSize = '4G'/task.maxHeapSize = '10G'/g' gradle/java-module.gradle;
-      ./gradlew hibernate-core:test check --no-daemon;
+      ./gradlew check -Plog-test-progress=true --no-daemon -Dtests.haltonfailure=false --continue;
     else
       ./gradlew check -Plog-test-progress=true;
     fi
