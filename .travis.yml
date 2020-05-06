@@ -23,14 +23,14 @@ jobs:
 before_script:
   - java -version
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew assemble org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m --no-daemon;
+      ./gradlew assemble -Dorg.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m --no-daemon;
     else
       ./gradlew assemble;
     fi
       
 script:
   - if [ "$HOSTTYPE" == "s390x" ];then
-      ./gradlew check -Plog-test-progress=true org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m --no-daemon;
+      ./gradlew check -Plog-test-progress=true -Dorg.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m --no-daemon;
     else
       ./gradlew check -Plog-test-progress=true;
     fi
