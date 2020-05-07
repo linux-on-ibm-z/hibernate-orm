@@ -10,10 +10,10 @@ jobs:
       dist: bionic
       arch: s390x
     - stage: AdoptOpenJDK 11.0.3
-      install:
-        - curl -L -o install-jdk.sh https://github.com/sormuras/bach/raw/master/install-jdk.sh
-        - source ./install-jdk.sh --target ./openjdk11 --url https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.3_7.tar.gz
-    - os: linux
+      #install:
+      #  - curl -L -o install-jdk.sh https://github.com/sormuras/bach/raw/master/install-jdk.sh
+      #  - source ./install-jdk.sh --target ./openjdk11 --url https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.3_7.tar.gz
+    #- os: linux
       dist: bionic
       arch: s390x
       install:
@@ -30,8 +30,6 @@ before_script:
       
 script:
   - if [ "$HOSTTYPE" == "s390x" ];then
-      sed -i 's/'-XX:MetaspaceSize=512M'/'-XX:MetaspaceSize=1024M'/g' gradle/java-module.gradle;
-      sed -i 's/task.maxHeapSize = '4G'/task.maxHeapSize = '10G'/g' gradle/java-module.gradle;
       ./gradlew check -Plog-test-progress=true --no-daemon;
     else
       ./gradlew check -Plog-test-progress=true;
