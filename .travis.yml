@@ -23,9 +23,6 @@ jobs:
 before_script:
   - java -version
   - if [ "$HOSTTYPE" == "s390x" ];then
-      # JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8;     
-      #export _JAVA_OPTIONS=-Xmx10g;                     
-      #export LANG=en_US.UTF-8;
       ./gradlew assemble -Dorg.gradle.jvmargs=-Xmx2048m --no-daemon;
     else
       ./gradlew assemble;
