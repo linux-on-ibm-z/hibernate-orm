@@ -10,7 +10,6 @@ jobs:
         - curl -L -o install-jdk.sh https://github.com/sormuras/bach/raw/master/install-jdk.sh
         - source ./install-jdk.sh --target ./openjdk11 --url https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.3_7.tar.gz
     - os: linux
-      fast_finish: true
       dist: bionic
       arch: s390x
       install:
@@ -18,7 +17,6 @@ jobs:
         - source ./install-jdk.sh --target ./openjdk11 --url https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-jdk_s390x_linux_hotspot_11.0.3_7.tar.gz
     allow_failures:
     - stage: OpenJDK 11
-      fast_finish: true
       jdk: openjdk11
       dist: bionic
       arch: s390x
